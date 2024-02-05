@@ -5,6 +5,7 @@ int main(int argc, char* argv[])
     InitWindow(800, 600, "Bouncing ball by faithgvn");
 
     int x = 400;
+    int y = 455;
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
@@ -15,7 +16,13 @@ int main(int argc, char* argv[])
         if (IsKeyDown(KEY_LEFT)) {
             x = x - 1;
         }
-        DrawCircle(x, 455, 35, RED);
+        if (IsKeyDown(KEY_UP)) {
+            y = y - 1;
+        }
+        if (IsKeyDown(KEY_DOWN)) {
+            y = y + 1;
+        }
+        DrawCircle(x, y, 35, RED);
         DrawRectangle(0, 490, 800, 600, GREEN);
         DrawRectangle(0, 500, 800, 600, BROWN);
         EndDrawing();
