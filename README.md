@@ -12,6 +12,13 @@ A game.
 * ninja
 * clang-format
 
+### clone
+
+```
+git clone https://github.com/faithgvn/bouncing-ball.git
+```
+
+
 ### install build tools
 
 ```
