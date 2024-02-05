@@ -19,9 +19,24 @@ int main(int argc, char* argv[])
         if (IsKeyDown(KEY_UP)) {
             y = y - 1;
         }
+
         if (IsKeyDown(KEY_DOWN)) {
             y = y + 1;
         }
+
+        if (y > 455) {
+            y = 455;
+        }
+        if (y < 35) {
+            y = 35;
+        }
+        if (x > 765) {
+            x = 765;
+        }
+        if (x < 35) {
+            x = 35;
+        }
+
         DrawCircle(x, y, 35, RED);
         DrawRectangle(0, 490, 800, 600, GREEN);
         DrawRectangle(0, 500, 800, 600, BROWN);
