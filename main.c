@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        DrawCircle(250, 455, 35, RED);
         DrawRectangle(0, 490, 800, 600, GREEN);
         DrawRectangle(0, 500, 800, 600, BROWN);
         EndDrawing();
