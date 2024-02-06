@@ -1,4 +1,5 @@
 #include <raylib.h>
+#include <utils.h>
 
 int main(int argc, char* argv[])
 {
@@ -6,6 +7,7 @@ int main(int argc, char* argv[])
 
     int x = 400;
     int y = 455;
+    int vy = 0;
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
@@ -17,12 +19,16 @@ int main(int argc, char* argv[])
             x = x - 1;
         }
         if (IsKeyDown(KEY_UP)) {
-            y = y - 1;
+            vy = 1;
         }
 
-        if (IsKeyDown(KEY_DOWN)) {
-            y = y + 1;
+        if (y < 200) {
+            vy = -1;
         }
+
+        TRACELOG(LOG_INFO, "x: %5d \t y: %5d \t vy: %5d", x, y, vy);
+
+        y -= vy;
 
         if (y > 455) {
             y = 455;
