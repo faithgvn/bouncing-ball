@@ -10,9 +10,11 @@ int main(int argc, char* argv[])
     double g = 10;
     double dt = 1.0 / 60; // 60FPS
 
+    double obstacleX = 800;
+
     while (!WindowShouldClose()) {
         double t = 0;
-        while (t < 1) {
+        while (t < 1 && !WindowShouldClose()) {
             BeginDrawing();
             ClearBackground(RAYWHITE);
             DrawRectangle(0, 0, 800, 490, SKYBLUE);
@@ -31,6 +33,12 @@ int main(int argc, char* argv[])
                 vy = vy + g * dt;
             }
 
+            obstacleX = obstacleX - 20 * dt;
+
+            if (obstacleX < -60) {
+                obstacleX = 800;
+            }
+
             if (y > 455) {
                 y = 455;
             }
@@ -43,6 +51,8 @@ int main(int argc, char* argv[])
             if (x < 35) {
                 x = 35;
             }
+
+            DrawRectangle(obstacleX, 350, 60, 140, GRAY);
 
             DrawCircle(x, y, 35, RED);
             DrawRectangle(0, 490, 800, 600, GREEN);
