@@ -52,6 +52,20 @@ int main(int argc, char* argv[])
                 x = 35;
             }
 
+            Vector2 ballCenter;
+            ballCenter.x = x;
+            ballCenter.y = y;
+
+            Rectangle obstacleRect;
+            obstacleRect.x = obstacleX;
+            obstacleRect.y = 350;
+            obstacleRect.width = 60;
+            obstacleRect.height = 140;
+
+            if (CheckCollisionCircleRec(ballCenter, 35, obstacleRect)) {
+                DrawText("GAME OVER", 400, 300, 10, BLACK);
+            }
+
             DrawRectangle(obstacleX, 350, 60, 140, GRAY);
 
             DrawCircle(x, y, 35, RED);
