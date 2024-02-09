@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char* argv[])
 {
@@ -12,18 +13,19 @@ int main(int argc, char* argv[])
     double dt = 1.0 / 60; // 60FPS
     int scoreboard = 0;
     double obstacleX = 800;
+    bool isGameOver = false;
+    char buffer[16] = { 0 };
 
     while (!WindowShouldClose()) {
 
         double t = 0;
         while (t < 1 && !WindowShouldClose()) {
-            BeginDrawing();
-            ClearBackground(RAYWHITE);
-            DrawRectangle(0, 0, 800, 490, SKYBLUE);
-            DrawText("scoreboard", 10, 10, 20, BLACK);
-            char buffer[16] = { 0 };
-            DrawText(itoa(scoreboard, buffer, 10), 10, 30, 20, BLACK);
-            if (IsKeyDown(KEY_UP) && y > 454) {
+
+            /* Read Keyboard Inputs */
+            bool isJumpRequested = IsKeyDown(KEY_UP);
+
+            /* Do logic */
+            if (isJumpRequested && y > 454) {
                 vy = -70;
             }
 
@@ -62,16 +64,29 @@ int main(int argc, char* argv[])
             obstacleRect.height = 140;
 
             if (CheckCollisionCircleRec(ballCenter, 35, obstacleRect)) {
-                DrawText("GAME OVER", 400, 300, 10, BLACK);
+                isGameOver = true;
             }
-            if (ballCenter.x == obstacleRect.x + 25) {
+            if ((ballCenter.x == obstacleRect.x + 25) && !isGameOver) {
                 scoreboard = scoreboard + 1;
             }
-            DrawRectangle(obstacleX, 350, 60, 140, GRAY);
+            /* Draw everthing */
 
+            BeginDrawing();
+            ClearBackground(RAYWHITE);
+            DrawRectangle(0, 0, 800, 490, SKYBLUE);
+            DrawRectangle(obstacleX, 350, 60, 140, GRAY);
             DrawCircle(x, y, 35, RED);
             DrawRectangle(0, 490, 800, 600, GREEN);
             DrawRectangle(0, 500, 800, 600, BROWN);
+            DrawText("scoreboard", 10, 10, 20, BLACK);
+            memset(buffer, 0, 16);
+            DrawText(itoa(scoreboard, buffer, 10), 10, 30, 20, BLACK);
+
+            if (isGameOver) {
+                DrawText("GAME OVER", 250, 300, 50, BLACK);
+                DrawText("Press any putton to restart", 200, 200, 30, BLACK);
+            }
+
             EndDrawing();
 
             t = t + dt;
