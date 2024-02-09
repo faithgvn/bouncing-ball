@@ -1,4 +1,5 @@
 #include <raylib.h>
+#include <stdlib.h>
 
 int main(int argc, char* argv[])
 {
@@ -9,16 +10,19 @@ int main(int argc, char* argv[])
     double vy = 0;
     double g = 10;
     double dt = 1.0 / 60; // 60FPS
-
+    int scoreboard = 0;
     double obstacleX = 800;
 
     while (!WindowShouldClose()) {
+
         double t = 0;
         while (t < 1 && !WindowShouldClose()) {
             BeginDrawing();
             ClearBackground(RAYWHITE);
             DrawRectangle(0, 0, 800, 490, SKYBLUE);
-
+            DrawText("scoreboard", 10, 10, 20, BLACK);
+            char buffer[16] = { 0 };
+            DrawText(itoa(scoreboard, buffer, 10), 10, 30, 20, BLACK);
             if (IsKeyDown(KEY_UP) && y > 454) {
                 vy = -70;
             }
@@ -60,7 +64,9 @@ int main(int argc, char* argv[])
             if (CheckCollisionCircleRec(ballCenter, 35, obstacleRect)) {
                 DrawText("GAME OVER", 400, 300, 10, BLACK);
             }
-
+            if (ballCenter.x == obstacleRect.x + 25) {
+                scoreboard = scoreboard + 1;
+            }
             DrawRectangle(obstacleX, 350, 60, 140, GRAY);
 
             DrawCircle(x, y, 35, RED);
