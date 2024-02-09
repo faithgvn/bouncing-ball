@@ -18,14 +18,9 @@ int main(int argc, char* argv[])
             BeginDrawing();
             ClearBackground(RAYWHITE);
             DrawRectangle(0, 0, 800, 490, SKYBLUE);
-            if (IsKeyDown(KEY_RIGHT)) {
-                x = x + 1;
-            }
-            if (IsKeyDown(KEY_LEFT)) {
-                x = x - 1;
-            }
+
             if (IsKeyDown(KEY_UP) && y > 454) {
-                vy = -80;
+                vy = -70;
             }
 
             if (y < 455 || vy < 0) {
@@ -33,7 +28,7 @@ int main(int argc, char* argv[])
                 vy = vy + g * dt;
             }
 
-            obstacleX = obstacleX - 20 * dt;
+            obstacleX = obstacleX - 30 * dt;
 
             if (obstacleX < -60) {
                 obstacleX = 800;
