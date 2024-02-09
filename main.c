@@ -23,8 +23,20 @@ int main(int argc, char* argv[])
 
             /* Read Keyboard Inputs */
             bool isJumpRequested = IsKeyDown(KEY_UP);
+            bool isRestartRequested = IsKeyDown(KEY_SPACE);
 
             /* Do logic */
+            if (isRestartRequested) {
+                /* Reset everthing*/
+                x = 400;
+                y = 455;
+                vy = 0;
+                scoreboard = 0;
+                obstacleX = 800;
+                isGameOver = false;
+                memset(buffer, 0, 16);
+            }
+
             if (isJumpRequested && y > 454) {
                 vy = -70;
             }
@@ -84,7 +96,7 @@ int main(int argc, char* argv[])
 
             if (isGameOver) {
                 DrawText("GAME OVER", 250, 300, 50, BLACK);
-                DrawText("Press any putton to restart", 200, 200, 30, BLACK);
+                DrawText("Press space to restart", 200, 200, 30, BLACK);
             }
 
             EndDrawing();
