@@ -55,13 +55,13 @@ int main(int argc, char* argv[])
             }
 
             obstacleX = obstacleX - 30 * dt;
-            drtgenx =  drtgenx - 30 * dt * 1.5 ;
+            drtgenx =  drtgenx - 30 * dt  ;
 
             if (obstacleX < -60) {
                 obstacleX = 800;
             }
 
-            if (drtgenx < -80) {
+            if (drtgenx < -60) {
                 drtgenx = 800;
             }
 
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
             Rectangle drtgenxRect;
             drtgenxRect.x = drtgenx;
             drtgenxRect.y = 0;
-            drtgenxRect.width = 80;
+            drtgenxRect.width = 60;
             drtgenxRect.height= 200;
 
             if (CheckCollisionCircleRec(ballCenter, 35, obstacleRect)) {
@@ -116,7 +116,7 @@ int main(int argc, char* argv[])
             DrawCircle(x, y, 35, RED);
             DrawRectangle(0, 490, 800, 600, GREEN);
             DrawRectangle(0, 500, 800, 600, BROWN);
-            DrawRectangle(drtgenx,0,80,200,GRAY);
+            DrawRectangle(drtgenx,0,60,200,GRAY);
             DrawText("scoreboard", 10, 10, 20, BLACK);
             memset(buffer, 0, 16);
             DrawText(itoa(scoreboard, buffer, 10), 10, 30, 20, BLACK);
